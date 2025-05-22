@@ -1,0 +1,11 @@
+Model Information:
+* title:	Kanye Dropoutbear
+* source:	https://sketchfab.com/3d-models/kanye-dropoutbear-99a64ece69214738ae2cc9e486a50a6a
+* author:	stamvrahnos (https://sketchfab.com/stamvrahnos)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Kanye Dropoutbear" (https://sketchfab.com/3d-models/kanye-dropoutbear-99a64ece69214738ae2cc9e486a50a6a) by stamvrahnos (https://sketchfab.com/stamvrahnos) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
