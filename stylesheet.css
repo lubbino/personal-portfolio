@@ -30,3 +30,36 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
     background: linear-gradient(0deg, #5C939B, #54B8C5 100%, #3FDBF0);
 }
+
+.scrolling-text {
+  overflow: hidden;
+  position: relative;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+}
+
+.scrolling-text-inner {
+  display: inline-flex;
+  gap: 2em;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.scrolling-text::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+
+.scrolling-text-inner {
+    display: inline-flex;
+    gap: 2em;
+    white-space: nowrap;
+    overflow-x: none;
+    align-items: center;
+    flex-direction: row;
+    display: flex;
+}
+
+#text1, #text2, #text3{
+  color: rgb(240, 240, 240);
+}
