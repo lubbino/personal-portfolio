@@ -1,7 +1,7 @@
 import gsap from "https://esm.sh/gsap@3.13.0";
 
-let bright = "rgb(222, 176, 39)";
-let dark = "rgb(130, 108, 36)";
+let bright = "#3FDBF0";
+let dark = "#5C939B";
 
 let savedProgress = parseFloat(localStorage.getItem("bgProgress")) || 0;
 
