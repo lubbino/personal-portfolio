@@ -142,6 +142,7 @@ video {
 .project-content p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
+  line-clamp: 1;
   -webkit-line-clamp: 1;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -153,6 +154,7 @@ video {
 
 /* When expanded, remove clamp */
 .project-card.expanded .project-content p {
+  line-clamp: unset;
   -webkit-line-clamp: unset;
   max-height: none;
   overflow: visible;
