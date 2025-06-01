@@ -3,10 +3,10 @@ import gsap from "https://esm.sh/gsap@3.13.0";
 let tl;
 
 function createTicker() {
-  const el = document.querySelector(".scrolling-text-inner");
-  if (!el) return;
+  const element = document.querySelector(".scrolling-text-inner");
+  if (!element) return;
 
-  const textWidth = el.offsetWidth;
+  const textWidth = element.offsetWidth;
   const viewportWidth = window.innerWidth;
 
   const startX = viewportWidth;
@@ -18,7 +18,7 @@ function createTicker() {
 
   tl = gsap.timeline({ repeat: -1 });
 
-  tl.fromTo(el, 
+  tl.fromTo(element, 
     { x: startX }, 
     { x: endX, duration: duration, ease: "none" }
   );

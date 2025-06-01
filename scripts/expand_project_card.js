@@ -13,14 +13,9 @@ document.addEventListener("click", (event) => {
 document.querySelectorAll(".project-card").forEach(card => {
   card.addEventListener("click", (event) => {
     event.stopPropagation();
-    if (isAnimating) return;
+    if (isAnimating || card === activeCard) return;
 
-    if (card === activeCard) return;
-
-    if (activeCard) {
-      collapseCard(activeCard);
-    }
-
+    if (activeCard) collapseCard(activeCard);
     expandCard(card);
   });
 });
@@ -30,7 +25,6 @@ function expandCard(card) {
   const scrollY = window.scrollY || window.pageYOffset;
   const scrollX = window.scrollX || window.pageXOffset;
 
-  // Store original state for collapse
   originalState = {
     top: rect.top + scrollY,
     left: rect.left + scrollX,
@@ -53,11 +47,15 @@ function expandCard(card) {
 
   card.classList.add("expanded");
 
+  const cardWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  const leftPos = (window.innerWidth / 2) - (cardWidth / 2);
+  const centerY = (window.innerHeight / 2) - (rect.height / 2);
+
   gsap.to(card, {
-    top: 0,
-    left: "40vw",
-    width: "20vw",
-    height: "100vh",
+    top: centerY,
+    left: leftPos,
+    width: "25em",
+    height: "auto",
     duration: 0.6,
     ease: "power3.out",
     onComplete: () => {

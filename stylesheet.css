@@ -102,8 +102,8 @@ nav ul li a:hover {
 
 /* Project Cards */
 .project-card {
-  width: 300px;
-  height: 250px;
+  width: 20em;
+  height: 20em;
   overflow: hidden;
   cursor: pointer;
   border-radius: 10px;
@@ -175,4 +175,44 @@ footer {
   padding: 2em 1em;
   font-size: 0.9em;
   color: rgb(200, 200, 200);
+}
+
+
+#back-to-top-button {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgb(240, 240, 240);
+  border: none;
+  padding: 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+#back-to-top-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.project-card.expanded {
+  overflow: visible;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
+  z-index: 999;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+  cursor: default;
+  border: 2px solid lemonchiffon;
+  background-color: rgb(31, 61, 110);
+}
+
+.project-card.expanded:hover {
+  transform: none;
+  box-shadow: none;
+  border: none;
 }
