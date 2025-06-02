@@ -21,7 +21,7 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: linear-gradient(0deg, #ff3737, #c55454 100%, #f03f3f);
+  background: linear-gradient(45deg, #000000, #332B2B 100%, #332B2B);
 }
 
 #Willkommen {
