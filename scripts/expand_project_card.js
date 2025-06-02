@@ -15,8 +15,11 @@ document.querySelectorAll(".project-card").forEach(card => {
     event.stopPropagation();
     if (isAnimating || card === activeCard) return;
 
-    if (activeCard) collapseCard(activeCard);
-    expandCard(card);
+    if (activeCard) {
+      collapseCard(activeCard, () => expandCard(card)); // Collapse current, then expand new
+    } else {
+      expandCard(card);
+    }
   });
 });
 
@@ -35,7 +38,10 @@ function expandCard(card) {
   isAnimating = true;
   activeCard = card;
 
-  // Fix card in place for animation
+  // Prevent scrolling
+  document.body.classList.add("no-scroll");
+
+  // Fix card in place
   gsap.set(card, {
     position: "fixed",
     top: originalState.top,
@@ -48,21 +54,14 @@ function expandCard(card) {
 
   card.classList.add("expanded");
 
-  // Target width in em
   const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-
-  // Set new width & auto height for measurement
   card.style.width = `${targetWidth}px`;
   card.style.height = "auto";
 
-  // Force reflow and measure height
   const newHeight = card.getBoundingClientRect().height;
-
-  // Calculate center position
   const topPos = (window.innerHeight - newHeight) / 2;
   const leftPos = (window.innerWidth - targetWidth) / 2;
 
-  // Animate to center
   gsap.to(card, {
     top: topPos,
     left: leftPos,
@@ -76,7 +75,7 @@ function expandCard(card) {
   });
 }
 
-function collapseCard(card) {
+function collapseCard(card, callback) {
   if (!originalState) return;
 
   isAnimating = true;
@@ -94,6 +93,11 @@ function collapseCard(card) {
       activeCard = null;
       originalState = null;
       isAnimating = false;
+
+      // Re-enable scrolling
+      document.body.classList.remove("no-scroll");
+
+      if (typeof callback === "function") callback();
     }
   });
 }

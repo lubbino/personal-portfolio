@@ -9,6 +9,11 @@ html, body {
   overflow-x: hidden;
 }
 
+.no-scroll {
+  overflow: hidden;
+  height: 100vh;
+}
+
 #bg {
   position: fixed;
   top: 0;
@@ -107,7 +112,7 @@ nav ul li a:hover {
   overflow: hidden;
   cursor: pointer;
   border-radius: 10px;
-  background-color: rgb(39, 82, 150);
+  background-color: #8B826A;
   position: relative;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -124,8 +129,8 @@ nav ul li a:hover {
 /* Only apply hover when not expanded */
 .project-card:not(.expanded):hover {
   transform: scale(1.02);
-  box-shadow: 0 0 0.5em rgba(255, 255, 255, 0.2);
-  border: 0.1em solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 0.5em #000000;
+  border: 0.1em solid #EAE4D5;
   z-index: 1;
 }
 
@@ -141,7 +146,7 @@ nav ul li a:hover {
 
 .project-content h3 {
   margin-top: 0;
-  color: lemonchiffon;
+  color: #F2F2F2;
 }
 
 .project-content p {
@@ -173,14 +178,14 @@ section {
 
 section h2 {
   font-size: 1.5em;
-  color: lemonchiffon;
+  color: #F2F2F2;
 }
 
 footer {
   text-align: center;
   padding: 2em 1em;
   font-size: 0.9em;
-  color: rgb(200, 200, 200);
+  color: #EAE4D5;
 }
 
 
@@ -189,7 +194,7 @@ footer {
   bottom: 2em;
   right: 2em;
   background-color: rgba(255, 255, 255, 0.1);
-  color: rgb(240, 240, 240);
+  color: #F2F2F2;
   border: none;
   padding: 0.5em;
   border-radius: 5px;
@@ -213,6 +218,6 @@ footer {
   z-index: 999;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   cursor: default;
-  border: 2px solid lemonchiffon;
-  background-color: rgb(31, 61, 110);
+  border: 0.1em solid #EAE4D5;
+  background-color: #8B826A;
 }
