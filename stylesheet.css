@@ -97,7 +97,8 @@ nav ul li a:hover {
 
 #projects {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+  overflow-x: wrap;
   justify-content: center;
   gap: 2em;
   align-items: flex-start;
@@ -114,7 +115,7 @@ nav ul li a:hover {
   border-radius: 10px;
   background-color: #8B826A;
   position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.6s ease, box-shadow 0.3s ease;
 }
 
 .project-card img, video{
