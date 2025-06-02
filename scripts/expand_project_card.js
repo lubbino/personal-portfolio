@@ -57,12 +57,10 @@ function expandCard(card) {
   isAnimating = true;
   activeCard = card;
 
-  // Fix card's original position and size
   const cardRect = originalRects.get(card);
   const scrollY = window.scrollY || window.pageYOffset;
   const scrollX = window.scrollX || window.pageXOffset;
 
-  // Set card fixed at its current position
   gsap.set(card, {
     position: "fixed",
     top: cardRect.top + scrollY,
@@ -76,19 +74,47 @@ function expandCard(card) {
     overflow: "hidden",
   });
 
-  // Animate other cards to shift aside
+  const timeline = gsap.timeline({
+    onComplete: () => {
+      isAnimating = false;
+      document.body.classList.add("no-scroll");
+    }
+  });
+
+  // Animate other cards to shift aside first
   cards.forEach(otherCard => {
     if (otherCard === card) return;
     const otherRect = originalRects.get(otherCard);
     const shiftX = getShiftAmount(cardRect, otherRect);
 
-    gsap.to(otherCard, {
+    timeline.to(otherCard, {
       x: shiftX,
       duration: 0.6,
       ease: "power3.out",
       overwrite: "auto"
-    });
+    }, 0); // all start at same time
   });
+
+  // Calculate target size and position for expanded card
+  const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
+  gsap.set(card, { width: targetWidth, height: "auto" });
+  const expandedHeight = card.getBoundingClientRect().height;
+  const targetTop = (window.innerHeight - expandedHeight) / 2;
+  const targetLeft = (window.innerWidth - targetWidth) / 2;
+
+  // Add card expansion animation to timeline *after* cards shift
+  timeline.to(card, {
+    top: targetTop,
+    left: targetLeft,
+    width: targetWidth,
+    height: expandedHeight,
+    duration: 0.6,
+    ease: "power3.out",
+    onComplete: () => {
+      gsap.set(card, { height: "auto" });
+    }
+  }, ">"); // ">" means after previous animations finish
+}
 
   // Animate the card to center + expand
   const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
@@ -113,8 +139,7 @@ function expandCard(card) {
       isAnimating = false;
       document.body.classList.add("no-scroll");
     }
-  });
-}
+});
 
 function collapseCard(card, callback) {
   if (!originalRects.has(card)) return;
