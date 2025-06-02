@@ -5,7 +5,7 @@ html, body {
   height: 100%;
   font-family: 'Platypi', sans-serif;
   background: transparent;
-  color: beige;
+  color: #F2F2F2;
   overflow-x: hidden;
 }
 
@@ -23,7 +23,7 @@ html, body {
   text-align: center;
   margin: 1em auto;
   font-size: 2em;
-  border: 0.1em dotted lemonchiffon;
+  border: 0.1em dotted #F2F2F2;
   padding: 0.5em;
   width: 9em;
   display: flex;
@@ -53,7 +53,7 @@ html, body {
   user-select: none;
   font-weight: 400;
   font-size: 1em;
-  color: rgb(240, 240, 240);
+  color: #F2F2F2;
 }
 
 /* Nav */
@@ -67,15 +67,15 @@ nav ul {
 }
 
 nav ul li a {
-  color: rgb(240, 240, 181);
+  color: #F2F2F2;
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1em;
 }
 
 nav ul li a:hover {
-  color: rgb(231, 222, 144);
-  text-shadow: 0 0 0.1em lemonchiffon;
+  color: #EAE4D5;
+  text-shadow: 0 0 0.01em #F2F2F2;
   text-decoration: underline;
 }
 
@@ -84,10 +84,10 @@ nav ul li a:hover {
   margin: 1em auto;
   font-size: 1em;
   width: 90%;
-  border-top: rgb(224, 218, 165) solid 0.1em;
+  border-top: #EAE4D5 solid 0.1em;
   text-align: center;
   margin-top: 1em;
-  color: rgb(240, 240, 240);
+  color: #F2F2F2;
 }
 
 #projects {
@@ -112,8 +112,13 @@ nav ul li a:hover {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-video {
-  margin-left: 25px;
+.project-card img, video{
+  border-radius: 0.25em;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  width: 100%;
+  position: relative;
 }
 
 /* Only apply hover when not expanded */

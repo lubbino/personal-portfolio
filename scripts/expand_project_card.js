@@ -35,6 +35,7 @@ function expandCard(card) {
   isAnimating = true;
   activeCard = card;
 
+  // Fix card in place for animation
   gsap.set(card, {
     position: "fixed",
     top: originalState.top,
@@ -47,15 +48,26 @@ function expandCard(card) {
 
   card.classList.add("expanded");
 
-  const cardWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-  const leftPos = (window.innerWidth / 2) - (cardWidth / 2);
-  const centerY = (window.innerHeight / 2) - ((rect.height + scrollY) / 2); 
+  // Target width in em
+  const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
 
+  // Set new width & auto height for measurement
+  card.style.width = `${targetWidth}px`;
+  card.style.height = "auto";
+
+  // Force reflow and measure height
+  const newHeight = card.getBoundingClientRect().height;
+
+  // Calculate center position
+  const topPos = (window.innerHeight - newHeight) / 2;
+  const leftPos = (window.innerWidth - targetWidth) / 2;
+
+  // Animate to center
   gsap.to(card, {
-    top: centerY,
+    top: topPos,
     left: leftPos,
-    width: "25em",
-    height: "auto",
+    width: targetWidth,
+    height: newHeight,
     duration: 0.6,
     ease: "power3.out",
     onComplete: () => {
