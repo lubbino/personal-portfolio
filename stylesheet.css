@@ -142,17 +142,16 @@ video {
 .project-content p {
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  line-clamp: 1;
-  -webkit-line-clamp: 1;
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: normal;
   line-height: 1.4em;
-  max-height: calc(1.4em * 1); /* fallback */
+  max-height: calc(1.4em * 3);
   transition: max-height 0.3s ease;
 }
 
-/* When expanded, remove clamp */
 .project-card.expanded .project-content p {
   line-clamp: unset;
   -webkit-line-clamp: unset;
@@ -211,10 +210,4 @@ footer {
   cursor: default;
   border: 2px solid lemonchiffon;
   background-color: rgb(31, 61, 110);
-}
-
-.project-card.expanded:hover {
-  transform: none;
-  box-shadow: none;
-  border: none;
 }

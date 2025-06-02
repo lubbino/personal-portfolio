@@ -49,7 +49,7 @@ function expandCard(card) {
 
   const cardWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
   const leftPos = (window.innerWidth / 2) - (cardWidth / 2);
-  const centerY = (window.innerHeight / 2) - (rect.height / 2);
+  const centerY = (window.innerHeight / 2) - ((rect.height + scrollY) / 2); 
 
   gsap.to(card, {
     top: centerY,
