@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     svg.style.width = "100%";
     svg.style.height = "100%";
     svg.style.zIndex = "-2"; // Behind everything but above the gradient bg
-    svg.style.opacity = "0.3"; // Make it subtle
+    svg.style.opacity = "0.25"; // Make it subtle
     
     // Add to the existing background container
     const bg = document.getElementById('bg');
@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path.setAttribute("d", `M${points.join(" L")}`);
     path.setAttribute("stroke", "#EAE4D5");
-    path.setAttribute("stroke-width", "7");
+    path.setAttribute("stroke-width", "5");
     path.setAttribute("fill", "none");
     svg.appendChild(path);
 
