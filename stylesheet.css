@@ -1,4 +1,3 @@
-/* Reset and Base Styles */
 html, body {
   margin: 0;
   padding: 0;
@@ -26,13 +25,17 @@ html, body {
 
 #Willkommen {
   text-align: center;
-  margin: 1em auto;
-  font-size: 2em;
-  border: 0.1em dotted #F2F2F2;
+  margin: 1em auto 0.5em auto;
+  font-size: 2.2em;
+  font-weight: 700;
   padding: 0.5em;
   width: 9em;
   display: flex;
   justify-content: center;
+  background: linear-gradient(90deg, #aee4ff, #f2e9e4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: none;
 }
 
 .scrolling-text {
@@ -61,7 +64,6 @@ html, body {
   color: #F2F2F2;
 }
 
-/* Nav */
 nav ul {
   list-style: none;
   display: flex;
@@ -76,22 +78,55 @@ nav ul li a {
   text-decoration: none;
   font-weight: 500;
   font-size: 1.1em;
+  position: relative;
 }
 
 nav ul li a:hover {
   color: #EAE4D5;
   text-shadow: 0 0 0.01em #F2F2F2;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
-/* Project Section */
+nav ul li a:hover::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #aee4ff, #F2F2F2);
+  border-radius: 1em;
+  animation: underlineGlow 0.4s ease forwards;
+}
+
+@keyframes underlineGlow {
+  0% { width: 0%; }
+  100% { width: 100%; }
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 0.03em;
+  color: #EAE4D5;
+}
+
+section {
+  margin: 3em auto;
+  max-width: 900px;
+  padding: 0 1em;
+}
+
+section h2 {
+  font-size: 1.5em;
+  color: #F2F2F2;
+}
+
 #project-title {
-  margin: 1em auto;
+  margin: 1em auto 0 auto;
   font-size: 1em;
   width: 90%;
   border-top: #EAE4D5 solid 0.1em;
   text-align: center;
-  margin-top: 1em;
   color: #F2F2F2;
 }
 
@@ -106,40 +141,56 @@ nav ul li a:hover {
   padding: 0 1em;
 }
 
-/* Project Cards */
 .project-card {
   width: 20em;
   height: 20em;
   overflow: hidden;
   cursor: pointer;
   border-radius: 10px;
-  background-color: #8B826A;
+  background-color: rgba(139, 130, 106, 0.85);
   position: relative;
   transition: transform 0.1s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(2px);
 }
 
-.project-card img, video{
+.project-card img, 
+.project-card video {
   border-radius: 0.25em;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   display: block;
   width: 100%;
   position: relative;
 }
 
-/* Only apply hover when not expanded */
 .project-card:not(.expanded):hover {
-  box-shadow: 0 0 0.5em #000000;
+  background-color: #9b917a;
+  box-shadow: 0 0 15px #00000077;
+  transform: translateY(-5px);
   border: 0.1em solid #EAE4D5;
   z-index: 1;
 }
 
 .project-card.expanded {
   overflow: visible;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin: 0;
   z-index: 999;
+  cursor: default;
+  border: 0.1em solid #EAE4D5;
+  background-color: rgba(139, 130, 106, 0.85);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
 }
 
-/* Project Content */
+.project-card.expanded img, 
+.project-card.expanded video {
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: cover;
+}
+
 .project-content {
   padding: 1em;
 }
@@ -169,74 +220,15 @@ nav ul li a:hover {
   overflow: visible;
 }
 
-/* Sections */
-section {
-  margin: 3em auto;
-  max-width: 900px;
-  padding: 0 1em;
-}
-
-section h2 {
-  font-size: 1.5em;
-  color: #F2F2F2;
-}
-
-footer {
-  text-align: center;
-  padding: 2em 1em;
-  font-size: 0.9em;
-  color: #EAE4D5;
-}
-
-
-#back-to-top-button {
-  position: fixed;
-  bottom: 2em;
-  right: 2em;
-  background-color: rgba(255, 255, 255, 0.1);
-  color: #F2F2F2;
-  border: none;
-  padding: 0.5em;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  transition: transform 0.3s ease;
-  z-index: 1000;
-}
-
-#back-to-top-button:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-  transform: scale(1.05);
-}
-
-.project-card.expanded {
-  overflow: visible;
-  position: fixed;
-  top: 0;
-  left: 0;
-  margin: 0;
-  z-index: 999;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
-  cursor: default;
-  border: 0.1em solid #EAE4D5;
-  background-color: #8B826A;
-}
-
-.project-card.expanded img, .project-card.expanded video {
-  width: 100%;
-  height: auto;
-  max-height: 80vh;
-  object-fit: cover;
-}
-
 .contact-div {
   display: flex;
   flex-direction: row;
-  overflow-x: wrap;  
+  overflow-x: wrap;
   justify-content: center;
   gap: 2em;
   margin-top: 2em;
 }
+
 .contact-card {
   padding: 0.5em;
   width: 100%;
@@ -245,17 +237,20 @@ footer {
   max-height: 20em;
   overflow: hidden;
   border-radius: 10px;
-  background-color: #8B826A;
+  background-color: rgba(139, 130, 106, 0.85);
   position: relative;
   transition: transform 0.1s ease, box-shadow 0.3s ease;
+  backdrop-filter: blur(2px);
 }
 
 .contact-card:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 0.5em #000000;
+  background-color: #9b917a;
+  box-shadow: 0 0 15px #00000077;
+  transform: translateY(-5px);
   border: 0.1em solid #EAE4D5;
   z-index: 1;
 }
+
 .contact-card img {
   margin-left: auto;
   margin-right: auto;
@@ -289,4 +284,61 @@ footer {
   text-decoration: none;
   margin-top: 1em;
   font-size: large;
+}
+
+.about-card {
+  background: linear-gradient(135deg, #8B826A, #7A6F58);
+  padding: 2em;
+  border-radius: 10px;
+  color: #F2F2F2;
+  box-shadow: 0 0 0.8em rgba(0, 0, 0, 0.4);
+  line-height: 1.6em;
+  font-size: 1.05em;
+  transition: background 0.5s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+}
+
+.about-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+  transform: skewX(-20deg);
+  animation: shimmer 6s infinite ease-in-out;
+}
+
+@keyframes shimmer {
+  0% { left: -75%; }
+  100% { left: 125%; }
+}
+
+footer {
+  text-align: center;
+  padding: 2em 1em;
+  font-size: 0.9em;
+  color: #EAE4D5;
+}
+
+#back-to-top-button {
+  position: fixed;
+  bottom: 2em;
+  right: 2em;
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #F2F2F2;
+  border: none;
+  padding: 0.5em;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  z-index: 1000;
+}
+
+#back-to-top-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
 }
