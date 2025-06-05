@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate group to slide left by width, then repeat infinitely
     animation = gsap.to(group, {
-      x: -width,
+      x: -width/2,
       duration: 20,
       ease: "linear",
       repeat: -1,
