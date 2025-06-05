@@ -1,4 +1,3 @@
-/* Reset and base styles */
 html, body {
   margin: 0;
   padding: 0;
@@ -7,7 +6,6 @@ html, body {
   background: transparent;
   color: #F2F2F2;
   overflow-x: hidden;
-  scroll-behavior: smooth; /* smooth scrolling */
 }
 
 .no-scroll {
@@ -15,7 +13,6 @@ html, body {
   height: 100vh;
 }
 
-/* Background */
 #bg {
   position: fixed;
   top: 0;
@@ -23,10 +20,9 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: linear-gradient(45deg, #000000, #332B2B);
+  background: linear-gradient(45deg, #000000, #332B2B 100%, #332B2B);
 }
 
-/* Willkommen heading with gradient text */
 #Willkommen {
   display: flex;
   justify-content: center;
@@ -39,11 +35,9 @@ html, body {
   background: linear-gradient(90deg, #aee4ff, #f2e9e4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  user-select: none;
   border: none;
 }
 
-/* Scrolling text container */
 .scrolling-text {
   position: relative;
   overflow: hidden;
@@ -51,11 +45,10 @@ html, body {
   height: 2em;
   display: flex;
   align-items: center;
-  margin: 0 1em;
   background: transparent;
+  margin: 0 1em;
 }
 
-/* Inner scrolling text */
 .scrolling-text-inner {
   position: absolute;
   top: 50%;
@@ -69,9 +62,10 @@ html, body {
   color: #F2F2F2;
   user-select: none;
   will-change: transform;
+  backface-visibility: hidden;
+  transform-style: preserve-3d;
 }
 
-/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -92,6 +86,7 @@ nav ul li a {
 
 nav ul li a:hover {
   color: #EAE4D5;
+  text-shadow: 0 0 8px #aee4ff;
 }
 
 nav ul li a:hover::after {
@@ -106,27 +101,20 @@ nav ul li a:hover::after {
   animation: underlineGlow 0.4s ease forwards;
 }
 
-/* Underline animation */
 @keyframes underlineGlow {
-  0% {
-    width: 0%;
-  }
-  100% {
-    width: 100%;
-  }
+  0% { width: 0%; }
+  100% { width: 100%; }
 }
 
-/* Project title */
 #project-title {
   margin: 1em auto;
   width: 90%;
   text-align: center;
-  border-top: 0.1em solid #EAE4D5;
+  border-top: #EAE4D5 solid 0.1em;
   font-size: 1em;
   color: #F2F2F2;
 }
 
-/* Projects container */
 #projects {
   display: flex;
   flex-wrap: nowrap;
@@ -137,7 +125,6 @@ nav ul li a:hover::after {
   padding: 0 1em;
 }
 
-/* Project card */
 .project-card {
   width: 20em;
   height: 20em;
@@ -148,6 +135,28 @@ nav ul li a:hover::after {
   transition: transform 0.1s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(2px);
   position: relative;
+}
+
+.project-card:not(.expanded) {
+  flex: 0 0 auto;
+  max-width: 20em;
+}
+
+.project-card:not(.expanded) img {
+  width: 100%;
+  height: 148px;
+  object-fit: cover;
+  display: block;
+  border-radius: 0.25em;
+}
+
+
+.project-card img {
+  width: 100%;
+  height: auto; 
+  object-fit: cover;
+  display: block;
+  border-radius: 0.25em;
 }
 
 .project-card img,
@@ -165,6 +174,7 @@ nav ul li a:hover::after {
   transform: translateY(-5px);
   border: 0.1em solid #EAE4D5;
   z-index: 1;
+  animation: floatUp 2s ease-in-out infinite alternate;
 }
 
 .project-card.expanded {
@@ -178,6 +188,7 @@ nav ul li a:hover::after {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
   cursor: default;
   overflow: visible;
+  animation: fadeInExpand 0.3s ease forwards;
 }
 
 .project-card.expanded img,
@@ -188,7 +199,6 @@ nav ul li a:hover::after {
   object-fit: cover;
 }
 
-/* Project content */
 .project-content {
   padding: 1em;
 }
@@ -216,7 +226,6 @@ nav ul li a:hover::after {
   overflow: visible;
 }
 
-/* Sections */
 section {
   margin: 3em auto;
   max-width: 900px;
@@ -232,9 +241,9 @@ h1, h2, h3 {
   font-family: 'Playfair Display', serif;
   letter-spacing: 0.03em;
   color: #EAE4D5;
+  transition: color 0.5s ease, text-shadow 0.5s ease;
 }
 
-/* Footer */
 footer {
   text-align: center;
   padding: 2em 1em;
@@ -242,7 +251,6 @@ footer {
   color: #EAE4D5;
 }
 
-/* Back to top button */
 #back-to-top-button {
   position: fixed;
   bottom: 2em;
@@ -253,16 +261,16 @@ footer {
   padding: 0.5em;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1000;
 }
 
 #back-to-top-button:hover {
   background-color: rgba(255, 255, 255, 0.2);
   transform: scale(1.05);
+  box-shadow: 0 0 8px #aee4ff;
 }
 
-/* Contact section */
 .contact-div {
   display: flex;
   flex-direction: row;
@@ -300,8 +308,7 @@ footer {
   height: auto;
   position: absolute;
   top: 1em;
-  left: 50%;
-  transform: translateX(-50%);
+  left: calc(50% - 2.5em);
 }
 
 .contact-card h3 {
@@ -325,7 +332,6 @@ footer {
   text-decoration: none;
 }
 
-/* About card */
 .about-card {
   background: linear-gradient(135deg, #8B826A, #7A6F58);
   padding: 2em;
@@ -347,54 +353,35 @@ footer {
   left: -75%;
   width: 50%;
   height: 100%;
-  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
-  transform: skewX(-20deg);
-  animation: shimmer 6s infinite ease-in-out;
+  background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transform: skewX(-25deg);
+  animation: shine 4s infinite;
+  pointer-events: none;
 }
 
-.about-block {
-  margin-bottom: 2em;
-}
-
-.about-block h3 {
-  font-size: 1.2em;
-  margin-bottom: 0.5em;
-  cursor: default;
-}
-
-.about-block ul {
-  padding-left: 1.2em;
-  list-style-type: disc;
-}
-
-/* Collapsible sections */
-.collapsible-header {
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-
-.collapsible-header:hover {
-  color: #aee4ff;
-}
-
-.collapsible-content {
-  max-height: 0;
-  overflow: hidden;
-  opacity: 0;
-  transition: max-height 0.5s ease, opacity 0.5s ease;
-}
-
-.collapsible-content.open {
-  max-height: 200px;
-  opacity: 1;
-}
-
-/* Shimmer animation for about card */
-@keyframes shimmer {
+@keyframes shine {
   0% {
     left: -75%;
   }
   100% {
     left: 125%;
+  }
+}
+
+/* Animations */
+
+@keyframes floatUp {
+  0% { transform: translateY(-5px); }
+  100% { transform: translateY(-10px); }
+}
+
+@keyframes fadeInExpand {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
