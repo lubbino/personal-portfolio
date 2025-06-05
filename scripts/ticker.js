@@ -14,20 +14,34 @@ function createTicker() {
 
   const duration = 25;
 
-  if (tl) tl.kill();
+  // Kill previous timeline if exists
+  if (tl) {
+    // Save progress before killing so it isn't lost during resize
+    localStorage.setItem("tickerProgress", tl.progress());
+    tl.kill();
+  }
 
   tl = gsap.timeline({ repeat: -1 });
 
-  tl.fromTo(element, 
-    { x: startX }, 
+  tl.fromTo(
+    element,
+    { x: startX },
     { x: endX, duration: duration, ease: "none" }
   );
-    tl.progress(parseFloat(localStorage.getItem("tickerProgress")) || 0);
+
+  // Restore progress if available, else start at 0
+  const savedProgress = parseFloat(localStorage.getItem("tickerProgress"));
+  if (!isNaN(savedProgress)) {
+    tl.progress(savedProgress);
+  }
 }
 
 window.addEventListener("load", createTicker);
 
 window.addEventListener("resize", () => {
-  localStorage.setItem("tickerProgress", tl ? tl.progress() : 0);
+  if (tl) {
+    // Save progress before recreating timeline
+    localStorage.setItem("tickerProgress", tl.progress());
+  }
   createTicker();
 });

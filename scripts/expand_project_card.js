@@ -7,7 +7,7 @@ let isAnimating = false;
 let activeCard = null;
 let originalRects = new Map(); // Store each card's original bounding rect
 
-// Utility to get cards' positions relative to viewport
+// Utility to update all cards' original bounding rects relative to viewport
 function updateOriginalRects() {
   originalRects.clear();
   cards.forEach(card => {
@@ -15,29 +15,27 @@ function updateOriginalRects() {
   });
 }
 
+// Calculate horizontal shift amount for other cards to move aside
 function getShiftAmount(expandedCardRect, cardRect) {
-  // Returns how much the card should shift horizontally to make room
-  // Logic: shift cards right if they're to the right of expanded card, left if to left
-
   const expandedCenterX = expandedCardRect.left + expandedCardRect.width / 2;
   const cardCenterX = cardRect.left + cardRect.width / 2;
 
   if (cardCenterX > expandedCenterX) {
-    // Card is to right, shift right by half the expanded card width
-    return expandedCardRect.width / 2 + 20; // 20px gap buffer
+    return expandedCardRect.width / 2 + 20; // Shift right by half expanded card width + buffer
   } else if (cardCenterX < expandedCenterX) {
-    // Card to left, shift left by half the expanded card width
-    return -(expandedCardRect.width / 2 + 20);
+    return -(expandedCardRect.width / 2 + 20); // Shift left
   }
   return 0;
 }
 
+// Collapse card if clicking outside active card and no animation in progress
 document.addEventListener("click", (event) => {
   if (activeCard && !activeCard.contains(event.target) && !isAnimating) {
     collapseCard(activeCard);
   }
 });
 
+// Add click listeners to cards for expansion/collapse toggle
 cards.forEach(card => {
   card.addEventListener("click", (event) => {
     event.stopPropagation();
@@ -61,6 +59,7 @@ function expandCard(card) {
   const scrollY = window.scrollY || window.pageYOffset;
   const scrollX = window.scrollX || window.pageXOffset;
 
+  // Set card to fixed position matching original position/size
   gsap.set(card, {
     position: "fixed",
     top: cardRect.top + scrollY,
@@ -81,7 +80,7 @@ function expandCard(card) {
     }
   });
 
-  // Animate other cards to shift aside first
+  // Animate other cards aside
   cards.forEach(otherCard => {
     if (otherCard === card) return;
     const otherRect = originalRects.get(otherCard);
@@ -92,17 +91,18 @@ function expandCard(card) {
       duration: 0.6,
       ease: "power3.out",
       overwrite: "auto"
-    }, 0); // all start at same time
+    }, 0);
   });
 
-  // Calculate target size and position for expanded card
+  // Calculate target width (25rem approx) and height after setting width
   const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
   gsap.set(card, { width: targetWidth, height: "auto" });
   const expandedHeight = card.getBoundingClientRect().height;
+
   const targetTop = (window.innerHeight - expandedHeight) / 2;
   const targetLeft = (window.innerWidth - targetWidth) / 2;
 
-  // Add card expansion animation to timeline *after* cards shift
+  // Animate the card to center and expand
   timeline.to(card, {
     top: targetTop,
     left: targetLeft,
@@ -111,35 +111,11 @@ function expandCard(card) {
     duration: 0.6,
     ease: "power3.out",
     onComplete: () => {
+      // Fix height to auto after animation so content can flow naturally
       gsap.set(card, { height: "auto" });
     }
-  }, ">"); // ">" means after previous animations finish
+  }, ">"); // start after previous animations finish
 }
-
-  // Animate the card to center + expand
-  const targetWidth = 25 * parseFloat(getComputedStyle(document.documentElement).fontSize);
-  const targetHeight = "auto";
-
-  // Temporarily set width for height calculation
-  gsap.set(card, { width: targetWidth, height: "auto" });
-  const expandedHeight = card.getBoundingClientRect().height;
-
-  const targetTop = (window.innerHeight - expandedHeight) / 2;
-  const targetLeft = (window.innerWidth - targetWidth) / 2;
-
-  gsap.to(card, {
-    top: targetTop,
-    left: targetLeft,
-    width: targetWidth,
-    height: expandedHeight,
-    duration: 0.6,
-    ease: "power3.out",
-    onComplete: () => {
-      gsap.set(card, { height: "auto" });
-      isAnimating = false;
-      document.body.classList.add("no-scroll");
-    }
-});
 
 function collapseCard(card, callback) {
   if (!originalRects.has(card)) return;
@@ -163,7 +139,7 @@ function collapseCard(card, callback) {
   const scrollY = window.scrollY || window.pageYOffset;
   const scrollX = window.scrollX || window.pageXOffset;
 
-  // Fix current height before animating back
+  // Fix current height before animating back to avoid jump
   const currentHeight = card.getBoundingClientRect().height;
   gsap.set(card, { height: currentHeight, overflow: "hidden" });
 

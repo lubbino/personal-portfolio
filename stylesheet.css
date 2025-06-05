@@ -1,3 +1,4 @@
+/* Reset and base styles */
 html, body {
   margin: 0;
   padding: 0;
@@ -6,6 +7,7 @@ html, body {
   background: transparent;
   color: #F2F2F2;
   overflow-x: hidden;
+  scroll-behavior: smooth; /* smooth scrolling */
 }
 
 .no-scroll {
@@ -13,6 +15,7 @@ html, body {
   height: 100vh;
 }
 
+/* Background */
 #bg {
   position: fixed;
   top: 0;
@@ -20,9 +23,10 @@ html, body {
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  background: linear-gradient(45deg, #000000, #332B2B 100%, #332B2B);
+  background: linear-gradient(45deg, #000000, #332B2B);
 }
 
+/* Willkommen heading with gradient text */
 #Willkommen {
   display: flex;
   justify-content: center;
@@ -35,9 +39,11 @@ html, body {
   background: linear-gradient(90deg, #aee4ff, #f2e9e4);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  user-select: none;
   border: none;
 }
 
+/* Scrolling text container */
 .scrolling-text {
   position: relative;
   overflow: hidden;
@@ -45,10 +51,11 @@ html, body {
   height: 2em;
   display: flex;
   align-items: center;
-  background: transparent;
   margin: 0 1em;
+  background: transparent;
 }
 
+/* Inner scrolling text */
 .scrolling-text-inner {
   position: absolute;
   top: 50%;
@@ -64,6 +71,7 @@ html, body {
   will-change: transform;
 }
 
+/* Navigation */
 nav ul {
   list-style: none;
   display: flex;
@@ -79,6 +87,7 @@ nav ul li a {
   font-weight: 500;
   font-size: 1.1em;
   position: relative;
+  transition: color 0.3s ease;
 }
 
 nav ul li a:hover {
@@ -97,20 +106,27 @@ nav ul li a:hover::after {
   animation: underlineGlow 0.4s ease forwards;
 }
 
+/* Underline animation */
 @keyframes underlineGlow {
-  0% { width: 0%; }
-  100% { width: 100%; }
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 
+/* Project title */
 #project-title {
   margin: 1em auto;
   width: 90%;
   text-align: center;
-  border-top: #EAE4D5 solid 0.1em;
+  border-top: 0.1em solid #EAE4D5;
   font-size: 1em;
   color: #F2F2F2;
 }
 
+/* Projects container */
 #projects {
   display: flex;
   flex-wrap: nowrap;
@@ -121,6 +137,7 @@ nav ul li a:hover::after {
   padding: 0 1em;
 }
 
+/* Project card */
 .project-card {
   width: 20em;
   height: 20em;
@@ -171,6 +188,7 @@ nav ul li a:hover::after {
   object-fit: cover;
 }
 
+/* Project content */
 .project-content {
   padding: 1em;
 }
@@ -198,6 +216,7 @@ nav ul li a:hover::after {
   overflow: visible;
 }
 
+/* Sections */
 section {
   margin: 3em auto;
   max-width: 900px;
@@ -215,6 +234,7 @@ h1, h2, h3 {
   color: #EAE4D5;
 }
 
+/* Footer */
 footer {
   text-align: center;
   padding: 2em 1em;
@@ -222,6 +242,7 @@ footer {
   color: #EAE4D5;
 }
 
+/* Back to top button */
 #back-to-top-button {
   position: fixed;
   bottom: 2em;
@@ -241,6 +262,7 @@ footer {
   transform: scale(1.05);
 }
 
+/* Contact section */
 .contact-div {
   display: flex;
   flex-direction: row;
@@ -278,7 +300,8 @@ footer {
   height: auto;
   position: absolute;
   top: 1em;
-  left: calc(50% - 2.5em);
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .contact-card h3 {
@@ -302,6 +325,7 @@ footer {
   text-decoration: none;
 }
 
+/* About card */
 .about-card {
   background: linear-gradient(135deg, #8B826A, #7A6F58);
   padding: 2em;
@@ -343,6 +367,7 @@ footer {
   list-style-type: disc;
 }
 
+/* Collapsible sections */
 .collapsible-header {
   cursor: pointer;
   transition: color 0.3s ease;
@@ -364,7 +389,12 @@ footer {
   opacity: 1;
 }
 
+/* Shimmer animation for about card */
 @keyframes shimmer {
-  0% { left: -75%; }
-  100% { left: 125%; }
+  0% {
+    left: -75%;
+  }
+  100% {
+    left: 125%;
+  }
 }

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ludvig Lifboms Porfolio</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="stylesheet.css">   
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Ludvig Lifbom's Portfolio</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="stylesheet.css" />
 </head>
-<body">
+<body>
     <div id="bg"></div>
+
     <h1 id="Willkommen">Ludvig Lifbom's Portfolio</h1>
-    <div class="scrolling-text">
+
+    <div class="scrolling-text" aria-label="Scrolling welcome messages">
         <div class="scrolling-text-inner">
             <p id="text1">Welcome to my portfolio!</p>
             <p id="text2">Explore my projects and learn more about me.</p>
@@ -19,35 +21,38 @@
             <p id="text5">Enjoy your stay!</p>
         </div>
     </div>
-    <nav>
+
+    <nav aria-label="Primary navigation">
         <ul>
             <li><a href="#projects">Projects</a></li>
             <li><a href="#about-me">About Me</a></li>
             <li><a href="#contact">Contact</a></li>
         </ul>
     </nav>
-    
+
     <a href="#Willkommen" id="back-to-top-button">Back to top.</a>
+
     <div id="project-title">
-    <h2>Projects</h2>
-    <p>Here you can find a selection of my work.</p>
+        <h2>Projects</h2>
+        <p>Here you can find a selection of my work.</p>
     </div>
 
     <section id="projects" class="cards-container">
-        <div id="project-1" class="project-card">
+        <article id="project-1" class="project-card" tabindex="0" aria-labelledby="project-1-title">
             <div class="project-content">
-                <h3>Vibb.online</h3>
-                <img src="media/project1.png" alt="">
+                <h3 id="project-1-title">Vibb.online</h3>
+                <img src="media/project1.png" alt="Screenshot of Vibb.online web app" />
                 <p><strong>Vibb.online</strong> is a satirical web-based parody of modern dating apps, designed to mock the superficial and repetitive nature of online matchmaking platforms. As the lead developer, I oversaw both the frontend and backend development of the project using <strong>PHP</strong>, <strong>CSS</strong>, and <strong>JavaScript</strong>.</p>
                 <p>After logging in with demo credentials, users are greeted with humorous profiles, over-the-top bios, and a mock chat system designed to poke fun at real-life dating app clichés. I developed a fully functional login system using PHP sessions, built randomized profile generation logic, and styled the interface to mimic the sleek but sometimes shallow appearance of popular apps like Tinder or Bumble.</p>
                 <p>I also implemented responsive layouts to ensure mobile usability, and scripted interactive elements to simulate swiping, matching, and messaging features—though all interactions are intentionally exaggerated or broken for comedic effect. The entire experience is self-contained and was designed to highlight both my technical abilities and my creativity when it comes to storytelling and UI design.</p>
                 <p>This project deepened my understanding of full-stack web development, user session management, and responsive design. It was also an opportunity to experiment with content-driven UX and dark humor in digital interfaces.</p>
             </div>
-        </div>
-        <div id="project-2" class="project-card">
+        </article>
+
+        <article id="project-2" class="project-card" tabindex="0" aria-labelledby="project-2-title">
             <div class="project-content">
-                <h3>Tactile Horror Prototype</h3>
-                <video src="media/project2-demo.mp4" autoplay loop muted playsinline ></video>
+                <h3 id="project-2-title">Tactile Horror Prototype</h3>
+                <video src="media/project2-demo.mp4" autoplay loop muted playsinline aria-label="Gameplay demonstration video"></video>
                 <p>This is a prototype for a psychological horror game made in Unity. It focuses on immersive exploration and detailed object interaction, inspired by games like <em>Visage</em> and <em>Layers of Fear</em>.</p>
 
                 <h4>Item Interaction System</h4>
@@ -62,91 +67,100 @@
                 <h4>What I Learned</h4>
                 <p>This project strengthened my skills in Unity input systems, 3D object manipulation, and designing immersive mechanics that contribute to gameplay and narrative.</p>
             </div>
-        </div>
-        <div id="project-3" class="project-card">
+        </article>
+
+        <article id="project-3" class="project-card" tabindex="0" aria-labelledby="project-3-title">
             <div class="project-content">
-                <h3>RPi remote control with camera</h3>
-                <img src="media/project1.png" alt="">
+                <h3 id="project-3-title">RPi remote control with camera</h3>
+                <img src="media/project3.jpg" alt="Raspberry Pi remote control project screenshot" />
                 <p>This project is a web-controlled robot built using a Raspberry Pi, created in collaboration with Albin Persson. It features both a Python-based client for hardware control and a PHP-based server for the browser interface.</p>
                 <p>Users can connect through a web browser to remotely view the robot’s camera feed and send movement commands. The client script interprets these commands to control motors and manage real-time video streaming from the Raspberry Pi’s camera module.</p>
                 <p>The project demonstrates a practical implementation of robotics, networking, and browser-based control, making it a hands-on exploration of IoT systems using accessible technologies.</p>
             </div>
+        </article>
+    </section>
+
+    <section id="about" aria-labelledby="about-me">
+        <div class="about-card">
+            <h2 id="about-me">About Me</h2>
+
+            <div class="about-block">
+                <h3>Why Technology?</h3>
+                <p>I’ve been fascinated by computers and programming since childhood. Choosing the Technology program felt natural—I've always wanted to understand how technology works and how to build with it.</p>
+            </div>
+
+            <div class="about-block">
+                <h3>What I've Learned</h3>
+                <ul>
+                    <li>HTML &amp; CSS fundamentals</li>
+                    <li>Version control with Git</li>
+                    <li>Remote control via VNC &amp; Raspberry Pi projects</li>
+                    <li>Basics of PHP and growing skills in Python</li>
+                </ul>
+            </div>
+
+            <div class="about-block collapsible">
+                <h3 class="collapsible-header" tabindex="0" role="button" aria-expanded="false" aria-controls="passion-content">My Passion for Problem-Solving</h3>
+                <div id="passion-content" class="collapsible-content" hidden>
+                    <p>I love solving problems creatively. Whether building a game or a technical system, I enjoy testing my skills and bringing ideas to life.</p>
+                </div>
+            </div>
+
+            <div class="about-block collapsible">
+                <h3 class="collapsible-header" tabindex="0" role="button" aria-expanded="false" aria-controls="goals-content">My Future Goals</h3>
+                <div id="goals-content" class="collapsible-content" hidden>
+                    <p>While I'm still exploring options, I know I want to work in IT or computer tech—maybe even start my own company or develop games. No matter the path, it’ll involve tech and problem-solving.</p>
+                </div>
+            </div>
+
+            <div class="about-block">
+                <h3>Strengths</h3>
+                <ul>
+                    <li>Structured, responsible project planning</li>
+                    <li>Goal-oriented and quality-driven</li>
+                    <li>Excellent practical problem-solving ability</li>
+                </ul>
+            </div>
+
+            <div class="about-block">
+                <h3>What I Want You to Know</h3>
+                <p>I’m passionate, driven, and always excited to explore and create with technology and programming.</p>
+            </div>
         </div>
     </section>
-    <section id="about">
-      <div class="about-card">
-        <h2>About Me</h2>
-        <div class="about-block">
-          <h3>Why Technology?</h3>
-          <p>I’ve been fascinated by computers and programming since childhood. Choosing the Technology program felt natural—I've always wanted to understand how technology works and how to build with it.</p>
-        </div>
-    
-        <div class="about-block">
-          <h3>What I've Learned</h3>
-          <ul>
-            <li>HTML & CSS fundamentals</li>
-            <li>Version control with Git</li>
-            <li>Remote control via VNC & Raspberry Pi projects</li>
-            <li>Basics of PHP and growing skills in Python</li>
-          </ul>
-        </div>
-    
-        <div class="about-block collapsible">
-          <h3 class="collapsible-header">My Passion for Problem-Solving</h3>
-          <div class="collapsible-content">
-            <p>I love solving problems creatively. Whether building a game or a technical system, I enjoy testing my skills and bringing ideas to life.</p>
-          </div>
-        </div>
-    
-        <div class="about-block collapsible">
-          <h3 class="collapsible-header">My Future Goals</h3>
-          <div class="collapsible-content">
-            <p>While I'm still exploring options, I know I want to work in IT or computer tech—maybe even start my own company or develop games. No matter the path, it’ll involve tech and problem-solving.</p>
-          </div>
-        </div>
-    
-        <div class="about-block">
-          <h3>Strengths</h3>
-          <ul>
-            <li>Structured, responsible project planning</li>
-            <li>Goal-oriented and quality-driven</li>
-            <li>Excellent practical problem-solving ability</li>
-          </ul>
-        </div>
-    
-        <div class="about-block">
-          <h3>What I Want You to Know</h3>
-          <p>I’m passionate, driven, and always excited to explore and create with technology and programming.</p>
-        </div>
-      </div>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
+
+    <section id="contact" aria-labelledby="contact-header">
+        <h2 id="contact-header">Contact</h2>
         <p>If you would like to get in touch, please reach out via email or social media.</p>
-        <div class="contact-div">    
+
+        <div class="contact-div">
             <div class="contact-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email Logo" class="social-card-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Gmail_icon_%282020%29.svg" alt="Email Logo" class="social-card-image" />
                 <h3>Email</h3>
                 <p>Feel free to contact me for any inquiries or collaborations.</p>
                 <p>Email: <a href="mailto:ludvig.lifbom@gmail.com">ludvig.lifbom@gmail.com</a></p>
             </div>
+
             <div class="contact-card">
-                <img src="media/discord-icon-svgrepo-com.svg" alt="Discord Logo" class="social-card-image">
+                <img src="media/discord-icon-svgrepo-com.svg" alt="Discord Logo" class="social-card-image" />
                 <h3>Discord</h3>
                 <p>Add me on Discord to chat about inquiries:</p>
                 <p>Username: <strong>ludvig.lif</strong></p>
             </div>
+
             <div class="contact-card">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="social-card-image">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/a/a5/Instagram_icon.png" alt="Instagram Logo" class="social-card-image" />
                 <h3>Instagram</h3>
                 <p>Follow me on Instagram for updates and behind-the-scenes content:</p>
                 <p><a href="https://instagram.com/ludviglifbom" target="_blank" rel="noopener noreferrer">@ludviglifbom</a></p>
             </div>
         </div>
     </section>
+
     <footer>
         <p>&copy; 2025 Ludvig Lifbom. All rights reserved.</p>
     </footer>
+
     <script type="module" src="scripts/expand_project_card.js"></script>
     <script type="module" src="scripts/ticker.js"></script>
     <script type="module" src="scripts/background_gradient_scroll_gsap.js"></script>

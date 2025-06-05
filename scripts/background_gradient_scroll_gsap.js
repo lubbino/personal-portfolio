@@ -1,18 +1,20 @@
 import gsap from "https://esm.sh/gsap@3.13.0";
 
-let bright = "#332B2B";
-let dark = "#000000";
+const bright = "#332B2B";
+const dark = "#000000";
 
-let savedProgress = parseFloat(localStorage.getItem("bgProgress")) || 0;
+// Load saved progress, ensure it's between 0 and 1
+const savedProgress = Math.min(Math.max(parseFloat(localStorage.getItem("bgProgress")) || 0, 0), 1);
 
-let tl = gsap.timeline({
+const tl = gsap.timeline({
   repeat: -1,
   onUpdate: () => {
     localStorage.setItem("bgProgress", tl.progress());
   }
 });
 
-tl.fromTo("#bg", 
+tl.fromTo(
+  "#bg",
   {
     background: `linear-gradient(45deg, ${dark}, ${bright} 100%, ${bright})`
   },
@@ -20,15 +22,19 @@ tl.fromTo("#bg",
     duration: 30,
     background: `linear-gradient(45deg, ${bright}, ${bright} 0%, ${dark})`,
     ease: "none",
-  })
-.fromTo("#bg",
+  }
+)
+.fromTo(
+  "#bg",
   {
-    background: `linear-gradient(45deg, ${bright}, ${dark} 100%, ${dark})`,
+    background: `linear-gradient(45deg, ${bright}, ${dark} 100%, ${dark})`
   },
   {
     duration: 30,
     background: `linear-gradient(45deg, ${dark}, ${dark} 0%, ${bright})`,
     ease: "none",
-  });
+  }
+);
 
+// Start animation from saved progress so it picks up seamlessly
 tl.progress(savedProgress);
