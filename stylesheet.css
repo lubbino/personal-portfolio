@@ -282,8 +282,7 @@ footer {
 }
 
 .contact-card a {
-  position: absolute;
-  left: calc(50% - 5em);
+  position: relative;
   width: 10em;
   text-align: center;
   color: #aee4ff;
