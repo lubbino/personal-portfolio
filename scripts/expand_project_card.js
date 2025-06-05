@@ -41,7 +41,6 @@ cards.forEach(card => {
     event.stopPropagation();
     if (isAnimating || card === activeCard) return;
 
-    // Get original rect BEFORE adding class
     updateOriginalRects();
 
     if (activeCard) {
@@ -140,13 +139,14 @@ function expandCard(card) {
   } else {
     // Normal expand mode on larger screens
 
-    // Set width first so height can be measured properly
+    // Temporarily set width to targetWidthPx and height auto to measure final expanded height
     gsap.set(card, { width: targetWidthPx, height: "auto" });
-
-    // Get the expanded height after setting width
     const expandedHeight = card.getBoundingClientRect().height;
 
-    // Center vertically and horizontally
+    // Reset width and height to original so we animate from original to expanded
+    gsap.set(card, { width: cardRect.width, height: cardRect.height });
+
+    // Calculate centered top and left for expanded card
     const targetTop = (window.innerHeight - expandedHeight) / 2;
     const targetLeft = (window.innerWidth - targetWidthPx) / 2;
 
@@ -155,6 +155,7 @@ function expandCard(card) {
       left: targetLeft,
       width: targetWidthPx,
       height: expandedHeight,
+      borderRadius: "12px",
       duration: 0.6,
       ease: "power3.out",
       onComplete: () => {

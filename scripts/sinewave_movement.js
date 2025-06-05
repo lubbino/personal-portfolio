@@ -30,7 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
     width = window.innerWidth;
     height = window.innerHeight;
 
-    svg.setAttribute("width", width * 2);
+    svg.setAttribute("width", width);
     svg.setAttribute("height", height);
     svg.setAttribute("viewBox", `0 0 ${width * 2} ${height}`);
 
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Animate group to slide left by width, then repeat infinitely
     animation = gsap.to(group, {
-      x: -width/2,
+      x: -width,
       duration: 20,
       ease: "linear",
       repeat: -1,
